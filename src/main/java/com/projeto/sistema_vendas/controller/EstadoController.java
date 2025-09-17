@@ -44,7 +44,6 @@ public class EstadoController {
         estadoRepository.delete(estado.get());
         return listar();
     }
-
     @PostMapping("/salvarEstado")
     public ModelAndView salvar(Estado estado, BindingResult result){
         if (result.hasErrors()){
