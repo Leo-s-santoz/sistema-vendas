@@ -25,7 +25,7 @@ public class EstadoController {
         return modelAndView;
     }
 
-    @GetMapping("/listarEstados")
+    @GetMapping("/listaEstado")
     public ModelAndView listar() {
         ModelAndView modelAndView = new ModelAndView("/administrativo/estados/lista");
         modelAndView.addObject("listaEstados", estadoRepository.findAll());
@@ -50,6 +50,6 @@ public class EstadoController {
             return cadastrar(estado);
         }
         estadoRepository.save(estado);
-        return cadastrar(new Estado());
+        return listar();
     }
 }

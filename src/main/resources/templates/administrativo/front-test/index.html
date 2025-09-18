@@ -82,22 +82,12 @@
           </ul>
         </div>
         <!--Menu Lateral-->
-
+        <!--Conteúdo-->
         <div class="col-md-9">
           <div class="container">
-            <!--Conteúdo-->
             <form action="/salvarEstado" th:object="${estado}" method="post">
               <h2>Cadastro de Estado</h2>
               <div class="mb-3">
-                <label for="id" class="form-label">ID:</label>
-                <input
-                  readonly="true"
-                  th:field="*{id}"
-                  type="text"
-                  class="form-control"
-                  placeholder="#"
-                />
-
                 <label for="nome" class="form-label">Nome:</label>
                 <input
                   th:field="*{nome}"
@@ -123,9 +113,9 @@
                 ><button type="button" class="btn btn-danger">Voltar</button></a
               >
             </form>
-            <!--Conteúdo-->
           </div>
         </div>
+        <!--Conteúdo-->
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
