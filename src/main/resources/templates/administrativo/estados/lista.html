@@ -131,8 +131,12 @@
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
     <script>
       $(document).ready( function () {
-        $('#tabela_estados').DataTable();
-      } );
+        $('#tabela_estados').DataTable({
+          language: {
+            url: '/js/pt-BR.json',
+          }
+        });
+      });
     </script>
   </body>
 </html>
