@@ -42,7 +42,7 @@ public class EstadoController {
     public ModelAndView remover(@PathVariable("id") Integer id) {
         Optional<Estado> estado = estadoRepository.findById(id);
         estadoRepository.delete(estado.get());
-        return listar();
+        return new ModelAndView("redirect:/listaEstado");
     }
     @PostMapping("/salvarEstado")
     public ModelAndView salvar(Estado estado, BindingResult result){
@@ -50,6 +50,6 @@ public class EstadoController {
             return cadastrar(estado);
         }
         estadoRepository.save(estado);
-        return listar();
+        return new ModelAndView("redirect:/listaEstado");
     }
 }
