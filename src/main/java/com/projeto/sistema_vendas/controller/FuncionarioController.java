@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class FuncionarioController {
     @Autowired
     private CidadeRepository cidadeRepository;
 
-    @GetMapping("/cadastrarFuncionario")
+    @GetMapping("/cadastroFuncionario")
     public ModelAndView cadastrar(Funcionario funcionario) {
         ModelAndView modelAndView = new ModelAndView("administrativo/funcionario/cadastro");
         modelAndView.addObject("funcionario", funcionario);
@@ -48,7 +49,7 @@ public class FuncionarioController {
         return new ModelAndView("/redirect:listaFuncionario");
     }
 
-    @GetMapping("/salvarFuncionario")
+    @PostMapping("/salvarFuncionario")
     public ModelAndView salvar(Funcionario funcionario, BindingResult result) {
         if (result.hasErrors()) {
             return cadastrar(funcionario);

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.4/css/dataTables.dataTables.css" />
+  </head>
+  <body>
+    <!--Barra Navegação-->
+      <nav class="px-3 navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <img src="fox_logo.png" alt="fox_logo" width="60" height="60" />
+        <a class="navbar-brand" style="margin-left: 2rem" href="/administrativo"
+          >Sistema Fox</a
+        >
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse bg" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+             <button class="btn btn-outline-light" type="submit">
+              <style>
+                .btn i {
+                  color: white;
+                }
+
+                .btn:hover i {
+                  color: black;
+                }
+              </style>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+        </div>
+    </nav>
+    <!--Barra Navegação-->
+
+    <div class="container" style="margin-top: 1rem">
+      <div class="row">
+        <!--Menu Lateral-->
+        <div class="col-md-3">
+          <ul class="list-group">
+            <li
+              class="list-group-item list-group-item-light active"
+              aria-current="true"
+            >
+            <i class="fa-solid fa-compass" style="color: #ffffff;"></i>
+              Menu
+            </li>
+            <a href="/cadastroCidade"
+              ><li class="list-group-item">Cadastrar Cidade</li></a
+            >
+            <a href="/listaCidade"
+              ><li class="list-group-item">Listar Cidades</li></a
+            >
+            <a href="#"><li class="list-group-item">placeholder</li></a>
+            <a href="#"><li class="list-group-item">placeholder</li></a>
+          </ul>
+        </div>
+        <!--Menu Lateral-->
+
+        <div class="col-md-9">
+          <div class="container">
+            <!--Conteúdo-->
+            <table class="table" id="tabela_cidades">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Cidade</th>
+                  <th scope="col">CEP</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="cidade: ${listaCidades}">
+                  <td th:text="${cidade.id}"></td>
+                  <td th:text="${cidade.nome}"></td>
+                  <td th:text="${cidade.cep}"></td>
+                  <td th:text="${cidade.estado.nome}"></td>
+                  <td colspan="2">
+                    <a  th:href="@{/editarCidade/{id}(id=${cidade.id})}"><i class="fa-solid fa-pen-to-square" style="color: #77bb41;"></i></a>
+                    <a  th:href="@{/excluirCidade/{id}(id=${cidade.id})}"><i class="fa-solid fa-trash" style="color: #e32400;"></i></a>
+                  </td>
+                </tr>
+    
+              </tbody>
+            </table>    
+            <!--Conteúdo-->
+          </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/228568ab87.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
+    <script>
+      $(document).ready( function () {
+        $('#tabela_cidades').DataTable({
+          language: {
+            url: '/js/pt-BR.json',
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
