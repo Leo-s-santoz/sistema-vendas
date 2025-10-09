@@ -32,11 +32,11 @@ public class CidadeController {
     @GetMapping("/listaCidade")
     public ModelAndView listar() {
         ModelAndView modelAndView = new ModelAndView("administrativo/cidades/lista");
-        modelAndView.addObject("listaCiades", cidadeRepository.findAll());
+        modelAndView.addObject("listaCidades", cidadeRepository.findAll());
         return modelAndView;
     }
 
-    @GetMapping("/editarEstado/{id}")
+    @GetMapping("/editarCidade/{id}")
     public ModelAndView editar(@PathVariable("id") Integer id) {
         Optional<Cidade> cidade = cidadeRepository.findById(id);
         return cadastrar(cidade.get());
@@ -49,7 +49,7 @@ public class CidadeController {
         return new ModelAndView("redirect:/listaCidade");
     }
 
-    @PostMapping("/savarCidade")
+    @PostMapping("/salvarCidade")
     public ModelAndView salvar(Cidade cidade, BindingResult result) {
         if (result.hasErrors()) {
             return cadastrar(cidade);

@@ -69,7 +69,7 @@
             </button>
           </form>
         </div>
-      </div>
+        </div>
     </nav>
     <!--Barra Navegação-->
 
@@ -85,11 +85,11 @@
             <i class="fa-solid fa-compass" style="color: #ffffff;"></i>
               Menu
             </li>
-            <a href="/cadastroEstado"
-              ><li class="list-group-item">Cadastrar Estado</li></a
+            <a href="/cadastroCidade"
+              ><li class="list-group-item">Cadastrar Cidade</li></a
             >
-            <a href="/listaEstado"
-              ><li class="list-group-item">Listar Estados</li></a
+            <a href="/listaCidade"
+              ><li class="list-group-item">Listar Cidades</li></a
             >
             <a href="#"><li class="list-group-item">placeholder</li></a>
             <a href="#"><li class="list-group-item">placeholder</li></a>
@@ -100,23 +100,25 @@
         <div class="col-md-9">
           <div class="container">
             <!--Conteúdo-->
-            <table class="table" id="tabela_estados">
+            <table class="table" id="tabela_cidades">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
+                  <th scope="col">Cidade</th>
+                  <th scope="col">CEP</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Sigla</th>
                   <th scope="col">Ação</th>
                 </tr>
               </thead>
               <tbody>
-                <tr th:each="estado: ${listaEstados}">
-                  <td th:text="${estado.id}"></td>
-                  <td th:text="${estado.nome}"></td>
-                  <td th:text="${estado.sigla}"></td>
+                <tr th:each="cidade: ${listaCidades}">
+                  <td th:text="${cidade.id}"></td>
+                  <td th:text="${cidade.nome}"></td>
+                  <td th:text="${cidade.cep}"></td>
+                  <td th:text="${cidade.estado.nome}"></td>
                   <td colspan="2">
-                    <a  th:href="@{/editarEstado/{id}(id=${estado.id})}"><i class="fa-solid fa-pen-to-square" style="color: #77bb41;"></i></a>
-                    <a  th:href="@{/excluirEstado/{id}(id=${estado.id})}"><i class="fa-solid fa-trash" style="color: #e32400;"></i></a>
+                    <a  th:href="@{/editarCidade/{id}(id=${cidade.id})}"><i class="fa-solid fa-pen-to-square" style="color: #77bb41;"></i></a>
+                    <a  th:href="@{/excluirCidade/{id}(id=${cidade.id})}"><i class="fa-solid fa-trash" style="color: #e32400;"></i></a>
                   </td>
                 </tr>
     
@@ -131,7 +133,7 @@
     <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
     <script>
       $(document).ready( function () {
-        $('#tabela_estados').DataTable({
+        $('#tabela_cidades').DataTable({
           language: {
             url: '/js/pt-BR.json',
           }

@@ -5,6 +5,7 @@
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
   <head>
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bootstrap demo</title>
@@ -80,59 +81,98 @@
               class="list-group-item list-group-item-light active"
               aria-current="true"
             >
+              <i class="fa-solid fa-compass" style="color: #ffffff"></i>
               Menu
             </li>
-            <a href="/cadastroEstado"
-              ><li class="list-group-item">Cadastrar Estado</li></a
+            <a href="/cadastroCidade"
+              ><li class="list-group-item">Cadastrar Cidade</li></a
             >
-            <a href="/listaEstado"
-              ><li class="list-group-item">Listar Estados</li></a
+            <a href="/listaCidade"
+              ><li class="list-group-item">Listar Cidades</li></a
             >
             <a href="#"><li class="list-group-item">placeholder</li></a>
             <a href="#"><li class="list-group-item">placeholder</li></a>
           </ul>
         </div>
         <!--Menu Lateral-->
-        <!--Conteúdo-->
+
         <div class="col-md-9">
           <div class="container">
-            <form action="/salvarEstado" th:object="${estado}" method="post">
-              <h2>Cadastro de Estado</h2>
+            <!--Conteúdo-->
+            <form action="/salvarCidade" th:object="${cidade}" method="post">
+              <h2>Cadastro de Cidade</h2>
               <div class="mb-3">
+                <label for="id" class="form-label">ID:</label>
+                <input
+                  required
+                  readonly="true"
+                  th:field="*{id}"
+                  type="text"
+                  class="form-control"
+                  placeholder="#"
+                />
+
                 <label for="nome" class="form-label">Nome:</label>
                 <input
+                  required
                   th:field="*{nome}"
                   type="text"
                   class="form-control"
-                  placeholder="'Santa Catarina'"
+                  placeholder="'Luzerna'"
                 />
 
-                <label for="sigla" class="form-label">Sigla:</label>
+                <label for="cep" class="form-label">CEP:</label>
                 <input
-                  th:field="*{sigla}"
-                  type="text"
-                  class="form-control"
-                  placeholder="'SC'"
+                  required
+                  th:field="*{cep}"
+                  class="form-control cep"
+                  id="cep"
                 />
+
+                <label for="estado">Estado</label>
+                  <select th:field="*{estado}" class="form-control" required>
+                    <option
+                      th:each="estado : ${listaEstados}" 
+                      th:value="${estado.id}" 
+                      th:text="${estado.nome}">
+                    </option>
+                  </select>
+                    
               </div>
               <a href="#"
                 ><button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-floppy-disk" style="color: #ffffff"></i>
                   Salvar
                 </button></a
               >
-              <a href="/administrativo"
-                ><button type="button" class="btn btn-danger">Voltar</button></a
-              >
             </form>
+            <!--Conteúdo-->
           </div>
         </div>
-        <!--Conteúdo-->
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js" 
+      integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj+KsslFkCOt3TvJrX2AV/Gc3wOqA==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer">
+    </script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" 
+      integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
+    </script>
+    <script>
+        $(document).ready(function(){
+          $('#cep').mask('99.999-999');
+       });
+    </script>
     <script
       src="https://kit.fontawesome.com/228568ab87.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+      crossorigin="anonymous">
+    </script>
+    <script 
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    </script>
   </body>
 </html>

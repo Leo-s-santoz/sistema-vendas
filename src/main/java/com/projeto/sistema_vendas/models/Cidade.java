@@ -1,7 +1,6 @@
 package com.projeto.sistema_vendas.models;
 
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 
 @Entity
@@ -21,7 +20,6 @@ public class Cidade implements Serializable {
 
     //relação tabela estado
     @ManyToOne
-    @Column(name = "estado")
     private Estado estado;
 
     public Integer getId() {
